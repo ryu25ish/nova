@@ -302,7 +302,7 @@ class LibvirtGenericVIFDriver(LibvirtBaseVIFDriver):
         return conf
 
     def get_config_midonet(self, instance, vif, image_meta,
-                          inst_type):
+                           inst_type):
         conf = super(LibvirtGenericVIFDriver,
                      self).get_config(instance, vif,
                                       image_meta, inst_type)
@@ -541,7 +541,7 @@ class LibvirtGenericVIFDriver(LibvirtBaseVIFDriver):
             linux_net.create_tap_dev(dev)
             utils.execute('mm-ctl', '--bind-port', port_id, dev,
                           run_as_root=True)
-        except exception.ProcessExecutionError:
+        except processutils.ProcessExecutionError:
             LOG.exception(_("Failed while plugging vif"), instance=instance)
 
     def plug_iovisor(self, instance, vif):
